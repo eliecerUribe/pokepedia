@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Card from "./Card";
+import Pagination from "./Pagination";
 import { apiUrl, pokemonType, getColorByOpacity } from "./utils";
-import leftArrow from "../../images/leftArrow.svg";
-import pokeball from "../../images/pokeball1.svg";
 import "./styles.scss";
 
 const transformData = (data) =>
@@ -58,42 +58,22 @@ export default function Home() {
 
   return (
     <div className="container">
-      <img
-        className="arrow left"
-        src={leftArrow}
-        alt="leftArrow"
-        onClick={() => onPagination("previous")}
-      />
-      <img
-        className="arrow right"
-        src={leftArrow}
-        alt="rightArrow"
-        onClick={() => onPagination("next")}
+      <Pagination
+        onPreviousClick={() => onPagination("previous")}
+        onNextClick={() => onPagination("next")}
       />
       {isLoading ? (
         <div>cargando...</div>
       ) : (
         pokemons.map((pokemon, id) => (
-          <div
+          <Card
             key={`card-${id}`}
-            className="card"
-            style={{ background: `${pokemon.backgroundColor}` }}
-          >
-            <div className="name">
-              {pokemon.name.toUpperCase()}{" "}
-              {pokemon.typeImage && (
-                <img src={pokemon.typeImage} alt={pokemon.name} width="12px" />
-              )}
-            </div>
-            <div className="id"># {String(pokemon.id).padStart(4, 0)}</div>
-            <img
-              src={pokemon.avatar}
-              alt={pokemon.name}
-              className="avatar"
-              width="200"
-            />
-            <img src={pokeball} alt="pokeball" className="background-image" />
-          </div>
+            id={pokemon.id}
+            name={pokemon.name}
+            avatar={pokemon.avatar}
+            typeImage={pokemon.typeImage}
+            backgroundColor={pokemon.backgroundColor}
+          />
         ))
       )}
     </div>
