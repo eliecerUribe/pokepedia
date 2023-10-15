@@ -2,9 +2,13 @@ import PropTypes from "prop-types";
 import pokeball from "../../../images/pokeball1.svg";
 import "./styles.scss";
 
-const Card = ({ id, name, avatar, typeImage, backgroundColor }) => {
+const Card = ({ id, name, avatar, typeImage, backgroundColor, onClick }) => {
   return (
-    <div className="card" style={{ background: `${backgroundColor}` }}>
+    <div
+      className="card"
+      style={{ background: `${backgroundColor}` }}
+      onClick={onClick}
+    >
       <div className="name">
         {name.toUpperCase()}
         {typeImage && <img src={typeImage} alt={name} width="12px" />}
@@ -22,6 +26,7 @@ Card.propTypes = {
   avatar: PropTypes.string.isRequired,
   typeImage: PropTypes.string,
   backgroundColor: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Card;

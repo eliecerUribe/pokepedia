@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "./Card";
 import Pagination from "./Pagination";
 import { apiUrl, transformData } from "./utils";
+import routes from "../../router/routes";
 import "./styles.scss";
 
 export default function Home() {
@@ -10,6 +12,7 @@ export default function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [url, setUrl] = useState(apiUrl);
   const [pagination, setPagination] = useState({});
+  const navigate = useNavigate();
 
   const fetchPokemons = async (url) => {
     try {
@@ -51,6 +54,7 @@ export default function Home() {
             avatar={pokemon.avatar}
             typeImage={pokemon.typeImage}
             backgroundColor={pokemon.backgroundColor}
+            onClick={() => navigate(`${routes.DETAILS}/${pokemon.id}`)}
           />
         ))
       )}
