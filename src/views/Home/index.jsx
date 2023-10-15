@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { apiUrl, pokemonType, getColorByOpacity } from "./utils";
 import leftArrow from "../../images/leftArrow.svg";
+import pokeball from "../../images/pokeball1.svg";
 import "./styles.scss";
 
 const transformData = (data) =>
@@ -10,14 +11,18 @@ const transformData = (data) =>
     const { data } = await axios.get(url);
     const avatar = data.sprites.other["official-artwork"].front_default;
     const [{ type }] = data.types;
-    const backgroundColor = getColorByOpacity(pokemonType[type.name], 0.85);
+    const backgroundColor = getColorByOpacity(
+      pokemonType[type.name].color,
+      0.85
+    );
 
     return {
       name,
       id: data.id,
       avatar,
       types: data.types,
-      typeColor: pokemonType[type.name],
+      typeColor: pokemonType[type.name].color,
+      typeImage: pokemonType[type.name].img,
       backgroundColor,
     };
   });
@@ -74,7 +79,12 @@ export default function Home() {
             className="card"
             style={{ background: `${pokemon.backgroundColor}` }}
           >
-            <div className="name">{pokemon.name.toUpperCase()}</div>
+            <div className="name">
+              {pokemon.name.toUpperCase()}{" "}
+              {pokemon.typeImage && (
+                <img src={pokemon.typeImage} alt={pokemon.name} width="12px" />
+              )}
+            </div>
             <div className="id"># {String(pokemon.id).padStart(4, 0)}</div>
             <img
               src={pokemon.avatar}
@@ -82,6 +92,7 @@ export default function Home() {
               className="avatar"
               width="200"
             />
+            <img src={pokeball} alt="pokeball" className="background-image" />
           </div>
         ))
       )}
