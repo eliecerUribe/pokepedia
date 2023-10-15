@@ -1,4 +1,4 @@
-export const apiUrl = "https://pokeapi.co/api/v2";
+export const apiUrl = "https://pokeapi.co/api/v2/pokemon";
 
 export const pokemonType = {
   normal: "rgba(170, 166, 127, 1)",
