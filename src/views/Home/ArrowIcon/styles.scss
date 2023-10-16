@@ -1,15 +1,15 @@
 .arrow {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   top: 50%;
   width: 90px;
 
   &.left {
-    left: 3rem;
+    left: 6rem;
   }
 
   &.right {
     transform: rotate(180deg);
-    right: 3rem;
+    right: 6rem;
   }
 }

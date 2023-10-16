@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "./Card";
-import Pagination from "./Pagination";
+import ArrowIcon from "./ArrowIcon";
 import { transformData } from "./utils";
 import { apiUrl } from "../../utils";
 import routes from "../../router/routes";
@@ -39,26 +39,26 @@ export default function Home() {
   };
 
   return (
-    <div className="container">
-      <Pagination
-        onPreviousClick={() => onPagination("previous")}
-        onNextClick={() => onPagination("next")}
-      />
-      {isLoading ? (
-        <div>cargando...</div>
-      ) : (
-        pokemons.map((pokemon, id) => (
-          <Card
-            key={`card-${id}`}
-            id={pokemon.id}
-            name={pokemon.name}
-            avatar={pokemon.avatar}
-            typeImage={pokemon.typeImage}
-            backgroundColor={pokemon.backgroundColor}
-            onClick={() => navigate(`${routes.DETAILS}/${pokemon.id}`)}
-          />
-        ))
-      )}
+    <div>
+      <ArrowIcon direction="left" onClick={() => onPagination("previous")} />
+      <div className="container">
+        {isLoading ? (
+          <div>cargando...</div>
+        ) : (
+          pokemons.map((pokemon, id) => (
+            <Card
+              key={`card-${id}`}
+              id={pokemon.id}
+              name={pokemon.name}
+              avatar={pokemon.avatar}
+              typeImage={pokemon.typeImage}
+              backgroundColor={pokemon.backgroundColor}
+              onClick={() => navigate(`${routes.DETAILS}/${pokemon.id}`)}
+            />
+          ))
+        )}
+      </div>
+      <ArrowIcon direction="right" onClick={() => onPagination("next")} />
     </div>
   );
 }
