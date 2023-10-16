@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import leftArrow from "../../../images/leftArrow.svg";
+import leftArrow from "../../../images/chevron_left.svg";
 import "./styles.scss";
 
 const Pagination = ({ onPreviousClick, onNextClick }) => {
