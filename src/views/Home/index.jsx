@@ -1,38 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Card from "./Card";
 import ArrowIcon from "./ArrowIcon";
-import { transformData } from "./utils";
 import { apiUrl } from "../../utils";
 import routes from "../../router/routes";
+import usePokemons from "../../hooks/usePokemons";
 import "./styles.scss";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [pokemons, setPokemons] = useState([]);
   const [url, setUrl] = useState(apiUrl);
-  const [pagination, setPagination] = useState({});
   const navigate = useNavigate();
 
-  const fetchPokemons = async (url) => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get(url);
-      const { results, next, previous } = response.data;
-      const pokemons = await Promise.all(transformData(results));
-      setPokemons(pokemons);
-      setPagination({ previous, next });
-      setIsLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchPokemons(url);
-  }, [url]);
+  const { isLoading, pokemons, pagination } = usePokemons(url);
 
   const onPagination = (pag) => {
     setUrl(pagination[pag]);
@@ -43,7 +22,7 @@ export default function Home() {
       <ArrowIcon direction="left" onClick={() => onPagination("previous")} />
       <div className="container">
         {isLoading ? (
-          <div>cargando...</div>
+          <h3>Loading...</h3>
         ) : (
           pokemons.map((pokemon, id) => (
             <Card

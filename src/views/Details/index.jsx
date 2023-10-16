@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import PokemonDetails from "./PokemonDetails";
-import { getColorByOpacity, pokemonType } from "../Home/utils";
+import { getColorByOpacity, pokemonType } from "../../utils";
 import { apiUrl } from "../../utils";
 
 const Details = () => {
@@ -24,7 +24,6 @@ const Details = () => {
       abilities: data.abilities,
       stats: data.stats,
     };
-    console.log(data);
     setPokemon(pokemon);
   };
 
