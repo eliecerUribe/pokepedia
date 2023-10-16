@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Card from "./Card";
 import Pagination from "./Pagination";
-import { apiUrl, transformData } from "./utils";
+import { transformData } from "./utils";
+import { apiUrl } from "../../utils";
 import routes from "../../router/routes";
 import "./styles.scss";
 

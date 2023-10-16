@@ -16,8 +16,6 @@ import ice from "../../images/ice.png";
 import dragon from "../../images/dragon.png";
 import fairy from "../../images/fairy.png";
 
-export const apiUrl = "https://pokeapi.co/api/v2/pokemon";
-
 export const pokemonType = {
   normal: { color: "rgba(170, 166, 127, 1)", img: "" },
   fighting: {

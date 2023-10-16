@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  position: relative;
+  align-items: center;
+
+  .id {
+    position: absolute;
+    right: 0;
+    color: #fff;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .name {
+    color: #1d1d1d;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin-left: 1rem;
+  }
+
+  img {
+    cursor: pointer;
+  }
+}
