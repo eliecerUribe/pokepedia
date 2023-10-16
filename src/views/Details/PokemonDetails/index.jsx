@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 import Bio from "./Bio";
 import Stats from "./Stats";
+import routes from "../../../router/routes";
 import "./styles.scss";
 
 const PokemonDetails = ({
@@ -15,12 +17,18 @@ const PokemonDetails = ({
   abilities,
   stats,
 }) => {
+  const navigate = useNavigate();
+
+  const onClickBack = () => {
+    navigate(routes.HOME);
+  };
+
   return (
     <div
       className="details-container"
       style={{ background: backgroundColor, borderColor: backgroundColor }}
     >
-      <Header name={name} id={id} />
+      <Header name={name} id={id} onClickBack={onClickBack} />
       <Bio
         name={name}
         avatar={avatar}
