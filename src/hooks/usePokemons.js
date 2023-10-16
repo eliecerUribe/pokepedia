@@ -17,7 +17,7 @@ const usePokemons = (url) => {
       setPagination({ previous, next });
       setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching pokemons:", error);
       setIsLoading(false);
     }
   };

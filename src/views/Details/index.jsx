@@ -1,36 +1,14 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import PokemonDetails from "./PokemonDetails";
-import { getColorByOpacity, pokemonType } from "../../utils";
-import { apiUrl } from "../../utils";
+import usePokemonDetail from "../../hooks/usePokemonDetail";
 
 const Details = () => {
   const { id } = useParams();
-  const [pokemon, setPokemon] = useState({});
+  const { isLoading, pokemon } = usePokemonDetail(id);
 
-  const fetchPokemon = async (id) => {
-    const { data } = await axios.get(`${apiUrl}/${id}`);
-    const [{ type }] = data.types;
-    const backgroundColor = getColorByOpacity(pokemonType[type.name].color, 1);
-    const pokemon = {
-      id,
-      name: data.name.toUpperCase(),
-      weight: data.weight,
-      height: data.height,
-      types: data.types,
-      backgroundColor,
-      avatar: data.sprites.other["official-artwork"].front_default,
-      abilities: data.abilities,
-      stats: data.stats,
-    };
-    setPokemon(pokemon);
-  };
-
-  useEffect(() => {
-    fetchPokemon(id);
-  }, [id]);
-
+  if (isLoading) {
+    return <h3>Loading...</h3>;
+  }
   return (
     <PokemonDetails
       id={pokemon.id}
