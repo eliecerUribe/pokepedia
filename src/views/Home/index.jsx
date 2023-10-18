@@ -19,7 +19,9 @@ export default function Home() {
 
   return (
     <div>
-      <ArrowIcon direction="left" onClick={() => onPagination("previous")} />
+      {pagination.previous && (
+        <ArrowIcon direction="left" onClick={() => onPagination("previous")} />
+      )}
       <div className="container">
         {isLoading ? (
           <h3>Loading...</h3>
@@ -37,7 +39,9 @@ export default function Home() {
           ))
         )}
       </div>
-      <ArrowIcon direction="right" onClick={() => onPagination("next")} />
+      {pagination.next && (
+        <ArrowIcon direction="right" onClick={() => onPagination("next")} />
+      )}
     </div>
   );
 }
