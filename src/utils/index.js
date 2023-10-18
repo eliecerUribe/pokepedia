@@ -48,3 +48,5 @@ export const getColorByOpacity = (str, opacity) =>
     /(rgba\(\d+,\s*\d+,\s*\d+,\s*)\d+(\.\d+)?(\s*\))/,
     `$1${opacity}$3`
   );
+
+export const getFormattedId = (id) => "# " + String(id).padStart(4, 0);

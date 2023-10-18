@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card matches snapshot with required props 1`] = `
+<div>
+  <div
+    class="card"
+    style="background: yellow;"
+  >
+    <div
+      class="name"
+    >
+      PIKACHU
+      <img
+        alt="pikachu"
+        src="electric.png"
+        width="12px"
+      />
+    </div>
+    <div
+      class="id"
+    >
+      # 0027
+    </div>
+    <img
+      alt="pikachu"
+      class="avatar"
+      src="pikachu.png"
+      width="200"
+    />
+    <img
+      alt="pokeball"
+      class="background-image"
+      src="pokeball1.svg"
+    />
+  </div>
+</div>
+`;
